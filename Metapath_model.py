@@ -59,7 +59,7 @@ class Metapath:
         print("Time cost:time".format(time=end - start))
         return side_embedding
 
-    def embedding_ini(self):
+    def embedding_init(self):
         """
         :return: Initial embedding
         """
