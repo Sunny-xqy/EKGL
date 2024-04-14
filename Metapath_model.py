@@ -154,8 +154,7 @@ def model_train(length,all_pairs,enc):
     start = time.time()
 
     max_iter = len(all_pairs) // args.batch_size * args.epochs
-    # f  = open('EKGL_train.txt', 'w', encoding='utf-8')
-    f  = open('system_train.txt', 'w', encoding='utf-8')
+    f  = open('EKGL_train.txt', 'w', encoding='utf-8')
     for iter in range(max_iter):
         iteration += 1
         batch_features, batch_labels = next(graph_context_batch_iter(all_pairs, args.batch_size))

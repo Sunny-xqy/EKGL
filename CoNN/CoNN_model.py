@@ -12,6 +12,7 @@ import tensorflow as tf
 from keras.layers import Input, Dense,  Concatenate,Dropout,Lambda,Multiply,Activation,Add,dot,RepeatVector
 from keras.models import Model,Sequential
 from keras.optimizers import Nadam
+import json
 
 import math
 # from node2vec import Node2Vec
@@ -40,6 +41,7 @@ def att(att,X):
     k = attention(X)
     k = tf.sum(k,axis=1)
     return k
+
 
 
 def CoNN_model():
@@ -135,26 +137,24 @@ def train_model(data,valid_data,batch_size,filepath):
     return loss,val_loss,metrics,val_metrics
     # return loss,metrics
 
-def read_enc():
-    pkl_file = open('data/system_all.pkl','rb')
-    enc =pickle.load(pkl_file)
-    return enc
+def find_keys(dictionary, value):
+    return [k for k, v in dictionary.items() if v == value]
 
 def getdata(embedding_result):
     data1 = []
     data2 = []
-    data3 = []
     controlpower = []
     f1=open('data/groundtruthforcontroller.txt','r')
     datas = f1.readlines()
+    f2 = open('data/Shareholder_r/shareholdingnode.json', 'r', encoding='utf-8')
+    dictionary = json.load(f2)
     for data in datas:
         links=data[:-1].split(';')
-        enc = read_enc()
         for link in links[:-1]:
             try:
                 node=link.split(',')
-                node0 = embedding_result[enc.transform([node[0]])[0]]
-                node1 = embedding_result[enc.transform([node[1]])[0]]
+                node0 = embedding_result[dictionary[node[0]][0]]
+                node1 = embedding_result[dictionary[node[1]][0]]
                 node01= float(node[2])
                 if node01 <= 0:
                     node01 = 0
