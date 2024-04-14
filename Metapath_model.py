@@ -60,16 +60,16 @@ class Metapath:
         return side_embedding
 
     def embedding_init(self):
-        """
-        :return: Initial embedding
-        """
         cat_embedding_vars = []
-        for i in range(self.num_feat):
-            embedding_var = tf.Variable(tf.random_uniform((self.feature_lens[i], self.embedding_dim), -1, 1), name='embedding'+str(i),
-                                        trainable=True)
+        embedding_var = tf.Variable(tf.random_uniform((self.num_nodes, self.embedding_dim), -1, 1),
+                                        name='structure',
+                                        trainable=True) 
+        cat_embedding_vars.append(embedding_var)
+        for i in range(self.num_feat-1):
+            embedding_var=tf.constant(self.side_info[i],dtype=float,name='embedding'+str(i))
             cat_embedding_vars.append(embedding_var)
         return cat_embedding_vars
-
+    
     def attention_merge(self):
         embed_list = []
         for i in range(self.num_feat):
