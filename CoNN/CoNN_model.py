@@ -167,8 +167,8 @@ def getdata(embedding_result):
     print("Finished......")
     data = [[data1,data2],controlpower]
     len_ = len(data1)
-    len1 = int(len_*0.8)
-    len2 = int(len_*0.9)
+    len1 = int(len_*0.7)
+    len2 = int(len_*0.8)
   
     train = [[data[0][0][:len1],data[0][1][:len1],data[0][2][:len1]],data[1][:len1]]
     valid = [[data[0][0][len1:len2],data[0][1][len1:len2],data[0][2][len1:len2]],data[1][len1:len2]]
