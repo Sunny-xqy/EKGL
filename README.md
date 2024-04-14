@@ -13,7 +13,7 @@ Then, the follow parameter can be chose:
 To obtain the acting in concert relations, you can use:
 
 ```
-python Multirelational/act_calculation.py -data/ACT_r
+python act_calculation.py -data/ACT_r
 ```
 
 The predicted acting in concert probability will be perserved in "data/ACT_r/result.csv" and "data/ACT_r/other.csv"
@@ -30,7 +30,7 @@ You can choose the follow parameter:
 To obtain the generated embeddings of entities, you can use:
 
 ```
-python Metapath/Metapath_model.py
+python Metapath_model.py
 ```
 The generated embeddings be perserved in "embeddings/EKGL.embed"
 
